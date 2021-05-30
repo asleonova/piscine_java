@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Scanner;
 
 public class Program {
 
@@ -10,8 +11,11 @@ public class Program {
 
     public static void main(String args[])
     {
-        for (String s: args) {
-            System.out.println(s);
+        // for (String s: args) {
+        //     System.out.println(s);
+        Scanner userInput = new Scanner(System.in);
+        String data = userInput.nextLine();
+        System.out.println(data);
     }
-}
+//}
 }
