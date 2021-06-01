@@ -3,14 +3,6 @@ import java.util.Scanner;
 
 public class Program {
 
-    public static String printEquals(long count)
-    {
-        String s = "";
-        for (long i = 0; i < count; ++i)
-            s += "=";
-        return s;
-    }
-
     public static void printTable(int count, long res)
     {
         int i = 1;
@@ -31,7 +23,6 @@ public class Program {
             i++;
         }
     }
-
 
     public static int minNumber(int a, int b)
     {
