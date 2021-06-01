@@ -12,8 +12,12 @@ public class Program {
     }
 
     private void checkIfPrime() {
-        
-        if (_num == 2) {
+
+        if (_num == 1) {
+            _isPrime = false;
+            _numOfSteps = 1;
+        }
+        else if (_num == 2) {
             _isPrime = false;
             _numOfSteps = 1;
         }
@@ -31,20 +35,18 @@ public class Program {
     }
 
     public boolean printResult() {
-
-        if (_num <= 1) {
-            System.out.println("Illegal Argument");
-            return false;
-        }
-        else if (_isPrime == false) {
+        if (_isPrime == false) {
             System.out.println("false " + _numOfSteps);
             return true;
         }
-        else {
+        else if  (_isPrime == true) {
             System.out.println("true " + _numOfSteps);
             return true;
         }
-
+        else {
+            System.out.println("Illegal Argument");
+            return false;
+        }
     }
 
     public static void main(String args[])

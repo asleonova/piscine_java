@@ -12,8 +12,12 @@ public class Program {
     }
 
     private void checkIfPrime() {
-        
-        if (_num == 2) {
+
+        if (_num == 1) {
+            _isPrime = false;
+            _numOfSteps = 1;
+        }
+        else if (_num == 2) {
             _isPrime = false;
             _numOfSteps = 1;
         }
@@ -32,7 +36,7 @@ public class Program {
 
     public boolean printResult() {
 
-        if (_num <= 1) {
+        if (_num < 0) {
             System.out.println("Illegal Argument");
             return false;
         }

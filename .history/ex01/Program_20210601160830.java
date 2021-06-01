@@ -32,7 +32,7 @@ public class Program {
 
     public boolean printResult() {
 
-        if (_num <= 1) {
+        if (_num < 1) {
             System.out.println("Illegal Argument");
             return false;
         }
