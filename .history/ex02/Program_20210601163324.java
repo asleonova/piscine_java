@@ -49,17 +49,13 @@ public class Program {
 
     public static void main(String args[])
     {
-        Scanner userInput = new Scanner(System.in);
-        if (!userInput.hasNextInt()) {
-            System.err.println("Illegal Argument");
-            userInput.close();
-            System.exit(-1);
+        boolean query = true;
+        while (query) {
+            Scanner userInput = new Scanner(System.in);
+            Program res = new Program(userInput.nextInt());
+
+            if (res == false)
+                System.exit(-1);
+
         }
-        Program res = new Program(userInput.nextInt());
-        if (res.printResult() == false)
-        {
-            userInput.close();
-            System.exit(-1);
-        }
-    }    
 }
