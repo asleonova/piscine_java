@@ -21,9 +21,9 @@ public class Program {
         return res;
     }
 
-public static void main(String args[])
-{
-    Program res = new Program(479598);
-    System.out.println(res.calculate());    
-}
+    public static void main(String args[])
+    {
+        Program res = new Program(479598);
+        System.out.println(res.calculate());
+    }
 }
