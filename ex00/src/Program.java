@@ -1,33 +1,36 @@
 import java.io.*;
 
-
-
-
-
 public class Program {
-    int _num;
 
-    public Program(int num) {
-        this._num = num;
-    }
-
-    public int calculate() {
-
+    public static void main(String args[]) {
+        int num = 479598;
         int res = 0;
         int remainder = 0;
 
-        while (_num > 0)
-        {
-            remainder = _num % 10;
-            res = res + remainder;
-            _num = _num / 10;
-        }
-        return res;
-    }
+        remainder = num % 10;
+        res = res + remainder;
+        num /= 10;
 
-    public static void main(String args[])
-    {
-        Program res = new Program(479598);
-        System.out.println(res.calculate());
+        remainder = num % 10;
+        res = res + remainder;
+        num /= 10;
+
+        remainder = num % 10;
+        res = res + remainder;
+        num /= 10;
+
+        remainder = num % 10;
+        res = res + remainder;
+        num /= 10;
+
+        remainder = num % 10;
+        res = res + remainder;
+        num /= 10;
+
+        remainder = num % 10;
+        res = res + remainder;
+        num /= 10;
+
+        System.out.println(res);
     }
 }
