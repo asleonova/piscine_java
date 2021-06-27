@@ -20,6 +20,5 @@ public class Program {
         System.out.println("transfer amount: " + cr_inv.getTransferAmount());
 
 
-
     }
 }
