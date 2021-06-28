@@ -1,11 +1,11 @@
 public class User {
 
-    private int Identifier;
+    private final int Identifier; // final - чтобы не менялся ID
     private String Name;
     private int Balance;
 
-    public User(int identifier, String name, int balance) {
-        Identifier = identifier;
+    public User(String name, int balance) {
+        Identifier = UserIdsGenerator.getInstance().generateId();
         Name = name;
         if (balance < 0) {
             System.out.println("error: balance cannot be negative. Set to 0 by default.");
@@ -17,11 +17,6 @@ public class User {
     public int getIdentifier() {
         return Identifier;
     }
-
-    public void setIdentifier(int identifier) {
-        Identifier = identifier;
-    }
-
 
     public String getName() {
         return Name;
@@ -36,10 +31,6 @@ public class User {
     }
 
     public void setBalance(int balance) {
-        if (balance < 0) {
-            System.out.println("error: balance cannot be negative. Set to 0 by default.");
-            Balance = 0;
-        } else
-            Balance = balance;
+        Balance = balance;
     }
 }
