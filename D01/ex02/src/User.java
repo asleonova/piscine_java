@@ -4,6 +4,8 @@ public class User {
     private String Name;
     private int Balance;
 
+   // public User() {} // probably delete it
+
     public User(String name, int balance) {
         Identifier = UserIdsGenerator.getInstance().generateId();
         Name = name;
