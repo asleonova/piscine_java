@@ -18,5 +18,7 @@ public class Program {
         Transaction cr_inv = new Transaction(UserTwo.getName(), UserOne.getName(), Category.credit, 5);
         System.out.println("transfer amount: " + deb_inv.getTransferAmount());
         System.out.println("transfer amount: " + cr_inv.getTransferAmount());
+
+
     }
 }
