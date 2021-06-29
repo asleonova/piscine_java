@@ -15,7 +15,7 @@ public class MyLinkedList<T> {
         this.prev = prev;
     }
 
-    public T getValue_type() {
+    public T getValue() {
         return value_type;
     }
 }
