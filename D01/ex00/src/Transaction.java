@@ -18,17 +18,13 @@ public class Transaction {
         Sender = sender;
         TransferCategory = transferCategory;
 
-        if (TransferCategory == Category.debit && transferAmount < 0)
-        {
+        if (TransferCategory == Category.debit && transferAmount < 0) {
             System.out.println("Debit (incoming transaction) can't be negative, set to 0 by default");
             TransferAmount = 0;
-        }
-        else if (TransferCategory == Category.credit && transferAmount > 0)
-        {
+        } else if (TransferCategory == Category.credit && transferAmount > 0) {
             System.out.println("Credit (outcoming transaction) can't be positive, set 0 by default");
             TransferAmount = 0;
-        }
-        else
+        } else
             TransferAmount = transferAmount;
     }
 
@@ -69,6 +65,13 @@ public class Transaction {
     }
 
     public void setTransferAmount(int transferAmount) {
-        TransferAmount = transferAmount;
+        if (TransferCategory == Category.debit && transferAmount < 0) {
+            System.out.println("Debit (incoming transaction) can't be negative, set to 0 by default");
+            TransferAmount = 0;
+        } else if (TransferCategory == Category.credit && transferAmount > 0) {
+            System.out.println("Credit (outcoming transaction) can't be positive, set 0 by default");
+            TransferAmount = 0;
+        } else
+            TransferAmount = transferAmount;
     }
 }
