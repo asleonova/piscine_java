@@ -1,33 +1,43 @@
+
 public class Program {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
 
-    public static void main(String args[])
-    {
-        User UserOne = new User("UserOne", 6);
-        User UserTwo = new User("User Two", 10);
-        User UserThree = new User("User Three", 3);
-        User UserFour = new User("User Four", 4);
-        User UserFive = new User("UserOne", 6);
-        User UserSix = new User("User Two", 10);
-        User UserSeven = new User("User Three", 3);
-        User UserEight = new User("User Four", 4);
-        User UserNine = new User("UserOne", 6);
-        User UserTen = new User("User Two", 10);
-        User UserEleven = new User("User Three", 3);
-        User UserTwelve = new User("User Four", 4);
+    public static void main(String args[]) throws UserNotFoundException {
+        UsersArrayList uList = new UsersArrayList();
 
-        UsersArrayList arr = new UsersArrayList();
-        arr.addUser(UserOne);
-        arr.addUser(UserTwo);
-        arr.addUser(UserThree);
-        arr.addUser(UserFour);
-        arr.addUser(UserFive);
-        arr.addUser(UserSix);
-        arr.addUser(UserSeven);
-        arr.addUser(UserEight);
-        arr.addUser(UserNine);
-        arr.addUser(UserTen);
-        arr.addUser(UserEleven);
-        arr.addUser(UserTwelve);
+        for (int i = 0; i < 22; ++i) {
+            uList.addUser(new User(String.valueOf(i), i));
+        }
 
+        System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "RETRIEVE NUMBER OF USERS: " + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
+        System.out.println("Num of users: " + uList.RetrieveNumberOfUsers());
+
+        System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "RETRIEVE USER BY INDEX TEST: " + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
+        User user = uList.RetrieveUserByIndex(5);
+        System.out.println(ANSI_GREEN + "Retrieving user with the index of 5: " + ANSI_RESET);
+        System.out.println("User : " + user.getName() + "\nwith the identifier: " + user.getIdentifier()
+                + "\nwith the balance of: " + user.getBalance());
+        System.out.println(ANSI_GREEN + "Retrieving user with the index of -1: " + ANSI_RESET);
+        System.out.println("User : " + user.getName() + "\nwith the identifier: " + user.getIdentifier()
+                + "\nwith the balance of: " + user.getBalance());
+
+        System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "RETRIEVE USER BY ID TEST: " + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
+
+        for (int i = 0; i < 13; ++i) {
+            user = uList.RetrieveUserById(i);
+            if (user != null) {
+                System.out.println("User: " + user.getName() + "\nwith the identifier: " + user.getIdentifier()
+                        + "\nwith the balance of: " + user.getBalance());
+            }
+
+        }
     }
 }
