@@ -3,6 +3,14 @@ import java.util.UUID;
 
 public class TransactionsLinkedList implements TransactionsList {
 
+    private MyLinkedList<Transaction> head;
+    private MyLinkedList<Transaction> tail;
+
+
+    public TransactionsLinkedList() {
+        this.head = null;
+        this.tail = null;
+    }
     private class DoublyLinkedList {
         class Node {
             Transaction value;
@@ -56,35 +64,37 @@ public class TransactionsLinkedList implements TransactionsList {
         }
     }
 
-    DoublyLinkedList dl_List = new DoublyLinkedList();
-
     @Override
     public void addTransaction(Transaction transaction) {
-        dl_List.addNode(transaction);
+        if (head == null) {
+            head = tail = new MyLinkedList<Transaction>(transaction);
+        }
+        else {
+            tail.next = new MyLinkedList<Transaction>(transaction, null, tail);
+            tail = tail.next;
+        }
     }
 
     @Override
     public void removeTransaction(UUID identifier) throws TransactionNotFoundException {
 
-        DoublyLinkedList tmpList = dl_List;
+        MyLinkedList<Transaction> tmp = head;
 
-        while (tmpList.head != null)
+        while (tmp != null)
         {
-            if (tmpList.head.value.getIdentifier().equals(identifier)) {
-
-                if (tmpList.head == dl_List.head) {
-                    dl_List.head = tmpList.head.next;
+            if (tmp.getValue_type().getIdentifier().equals(identifier)) {
+                if (tmp == head) {
+                    head = tmp.next;
                 }
-
-                if (tmpList.head.next != null) {
-                    tmpList.head.next.prev = tmpList.head.prev;
+                if (tmp.next != null) {
+                    tmp.next.prev = tmp.prev;
                 }
-                if (tmpList.head.prev != null) {
-                    tmpList.head.prev.next = tmpList.head.next;
+                if (tmp.prev != null) {
+                    tmp.prev.next = tmp.next;
                 }
-                return ;
+                return;
             }
-            tmpList.head = tmpList.head.next;
+            tmp = tmp.next;
         }
         throw new TransactionNotFoundException();
     }
@@ -94,34 +104,25 @@ public class TransactionsLinkedList implements TransactionsList {
         return new Transaction[0];
     }
 
-//    public void printTransactionList()
-//    {
-//        while (dl_List.head != null)
-//        {
-//            dl_List.head.value.printTransaction();
-//            dl_List.head = dl_List.head.next;
-//        }
-//    }
-
     public void printTransactionList()
     {
 
-        DoublyLinkedList tmp = dl_List;
-        while (tmp.head != null)
+        MyLinkedList<Transaction> tmp = head;
+        while (tmp != null)
         {
-            tmp.head.value.printTransaction();
-            tmp.head = tmp.head.next;
+            tmp.getValue_type().printTransaction();
+            tmp = tmp.next;
         }
     }
 
     public void printTransactionListFirstLast()
     {
 
-        DoublyLinkedList tmp = dl_List;
-        while (tmp.tail != null)
+        MyLinkedList<Transaction> tmp = tail;
+        while (tmp != null)
         {
-            tmp.tail.value.printTransaction();
-            tmp.tail = tmp.tail.prev;
+            tmp.getValue_type().printTransaction();
+            tmp = tmp.prev;
         }
     }
 }

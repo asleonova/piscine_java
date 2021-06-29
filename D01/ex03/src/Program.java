@@ -47,7 +47,7 @@ public class Program {
         userFirst.setBalance(userFirst.getBalance() + creditTransaction.getTransferAmount());
         UUID trID3 = creditTransaction.getIdentifier();
 
-        userFirst.getTransactionsList().removeTransaction(trID1);
+        userFirst.getTransactionsList().removeTransaction(trID2);
 
 
 
