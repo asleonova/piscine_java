@@ -1,6 +1,6 @@
 public class User {
 
-    private final int Identifier; // final - чтобы не менялся ID
+    private final int Identifier;
     private String Name;
     private int Balance;
 

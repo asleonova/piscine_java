@@ -19,8 +19,8 @@ public class Program {
 
         System.out.println(ANSI_PURPLE + "\nPerforming transactions: " + ANSI_RESET);
 
-        Transaction deb = new Transaction(userOne.getName(), userTwo.getName(), Category.debit, 5);
-        Transaction cr = new Transaction(userTwo.getName(), userOne.getName(), Category.credit, -5);
+        Transaction deb = new Transaction(userOne, userTwo, Category.debit, 5);
+        Transaction cr = new Transaction(userTwo, userOne, Category.credit, -5);
         System.out.println("transfer amount from userTwo: " + deb.getTransferAmount());
         System.out.println("transfer amount to userOne: " + cr.getTransferAmount());
         userOne.setBalance(userOne.getBalance() + deb.getTransferAmount());
@@ -33,8 +33,8 @@ public class Program {
                 + " --> with the balance of: " + userTwo.getBalance());
 
         System.out.println("\nTrying invalid transactions: ");
-        Transaction deb_inv = new Transaction(userOne.getName(), userTwo.getName(), Category.debit, -5);
-        Transaction cr_inv = new Transaction(userTwo.getName(), userOne.getName(), Category.credit, 5);
+        Transaction deb_inv = new Transaction(userOne, userTwo, Category.debit, -5);
+        Transaction cr_inv = new Transaction(userTwo, userOne, Category.credit, 5);
         System.out.println("transfer amount: " + deb_inv.getTransferAmount());
         System.out.println("transfer amount: " + cr_inv.getTransferAmount());
 

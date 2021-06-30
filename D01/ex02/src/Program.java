@@ -23,9 +23,6 @@ public class Program {
         System.out.println(ANSI_GREEN + "Retrieving user with the index of 5: " + ANSI_RESET);
         System.out.println("User : " + user.getName() + "\nwith the identifier: " + user.getIdentifier()
                 + "\nwith the balance of: " + user.getBalance());
-        System.out.println(ANSI_GREEN + "Retrieving user with the index of -1: " + ANSI_RESET);
-        System.out.println("User : " + user.getName() + "\nwith the identifier: " + user.getIdentifier()
-                + "\nwith the balance of: " + user.getBalance());
 
         System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
         System.out.println(ANSI_PURPLE + "RETRIEVE USER BY ID TEST: " + ANSI_RESET);

@@ -1,6 +1,6 @@
 public class UserIdsGenerator {
     private static int Identifier;
-    private static UserIdsGenerator instance; // static, потому что привязка объекта к текущему классу
+    private static UserIdsGenerator instance;
 
     public static UserIdsGenerator getInstance() {
         if (instance == null) {
@@ -9,14 +9,11 @@ public class UserIdsGenerator {
         return instance;
     }
 
-    private UserIdsGenerator() {} // прячем, чтобы не происходило инициализации, до вызова метода getInstance();
+    private UserIdsGenerator() {
+    }
 
-    public static int generateId()
-    {
+    public static int generateId() {
         return Identifier++;
     }
 
 }
-
-// https://www.journaldev.com/1377/java-singleton-design-pattern-best-practices-examples
-// это прикольная статья, объясняющая Singleton

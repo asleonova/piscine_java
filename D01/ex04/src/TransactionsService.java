@@ -25,8 +25,8 @@ public class TransactionsService {
 
         if (sender.getBalance() - transferAmount < 0) {throw new IllegalTransactionException();}
 
-        Transaction credit = new Transaction(sender.getName(), recipient.getName(), Category.credit, -transferAmount);
-        Transaction debit = new Transaction(credit.getIdentifier(), sender.getName(), recipient.getName(), Category.debit, transferAmount);
+        Transaction credit = new Transaction(sender, recipient, Category.credit, -transferAmount);
+        Transaction debit = new Transaction(credit.getIdentifier(), sender, recipient, Category.debit, transferAmount);
 
         sender.getTransactionsList().addTransaction(credit);
         recipient.getTransactionsList().addTransaction(debit);

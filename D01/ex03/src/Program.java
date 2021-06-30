@@ -30,23 +30,23 @@ public class Program {
         System.out.println(ANSI_PURPLE + "ADDING TRANSACTIONS TO THE LIST: " + ANSI_RESET);
         System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
 
-        Transaction creditTransaction = new Transaction(userSecond.getName(), userFirst.getName(), Category.credit, -50);
+        Transaction creditTransaction = new Transaction(userSecond, userFirst, Category.credit, -50);
         userFirst.getTransactionsList().addTransaction(creditTransaction);
         userFirst.setBalance(userFirst.getBalance() + creditTransaction.getTransferAmount());
 
 
-        creditTransaction = new Transaction(userSecond.getName(), userFirst.getName(), Category.credit, -30);
+        creditTransaction = new Transaction(userSecond, userFirst, Category.credit, -30);
         userFirst.getTransactionsList().addTransaction(creditTransaction);
         userFirst.setBalance(userFirst.getBalance() + creditTransaction.getTransferAmount());
         UUID trID = creditTransaction.getIdentifier();
 
         for (int i = -100; i > -400; i -= 100) {
-            creditTransaction = new Transaction(userSecond.getName(), userFirst.getName(), Category.credit, i);
+            creditTransaction = new Transaction(userSecond, userFirst, Category.credit, i);
             userFirst.getTransactionsList().addTransaction(creditTransaction);
             userFirst.setBalance(userFirst.getBalance() + creditTransaction.getTransferAmount());
         }
 
-        creditTransaction = new Transaction(userSecond.getName(), userFirst.getName(), Category.credit, -10);
+        creditTransaction = new Transaction(userSecond, userFirst, Category.credit, -10);
         userFirst.getTransactionsList().addTransaction(creditTransaction);
         userFirst.setBalance(userFirst.getBalance() + creditTransaction.getTransferAmount());
         UUID trID1 = creditTransaction.getIdentifier();

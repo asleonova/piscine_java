@@ -7,12 +7,12 @@ enum Category {
 
 public class Transaction {
     private UUID Identifier;
-    private String Recipient;
-    private String Sender;
+    private User Recipient;
+    private User Sender;
     private Category TransferCategory;
     private int TransferAmount;
 
-    public Transaction(String recipient, String sender, Category transferCategory, int transferAmount) {
+    public Transaction(User recipient, User sender, Category transferCategory, int transferAmount) {
         Identifier = UUID.randomUUID();
         Recipient = recipient;
         Sender = sender;
@@ -36,19 +36,19 @@ public class Transaction {
         Identifier = identifier;
     }
 
-    public String getRecipient() {
+    public User getRecipient() {
         return Recipient;
     }
 
-    public void setRecipient(String recipient) {
+    public void setRecipient(User recipient) {
         Recipient = recipient;
     }
 
-    public String getSender() {
+    public User getSender() {
         return Sender;
     }
 
-    public void setSender(String sender) {
+    public void setSender(User sender) {
         Sender = sender;
     }
 
