@@ -22,7 +22,7 @@ public class UsersArrayList implements UsersList {
 
     @Override
     public User RetrieveUserById(int id) throws UserNotFoundException {
-        for (int i = 0; i < size; ++size) {
+        for (int i = 0; i < size; ++i) {
             if (usersArray[i].getIdentifier() == id)
                 return usersArray[i];
         }

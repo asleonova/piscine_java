@@ -6,6 +6,8 @@ public class TransactionsService {
     private UnpairedTransactions unpairedTransactions;
 
     public TransactionsService() {
+        usersList = new UsersArrayList();
+        unpairedTransactions = new UnpairedTransactions();
     }
 
     public void addUser(User user) {
@@ -23,14 +25,14 @@ public class TransactionsService {
 
         if (sender.getBalance() - transferAmount < 0) {throw new IllegalTransactionException();}
 
-        Transaction credit = new Transaction(sender.getName(), recipient.getName(), Category.credit, transferAmount);
+        Transaction credit = new Transaction(sender.getName(), recipient.getName(), Category.credit, -transferAmount);
         Transaction debit = new Transaction(credit.getIdentifier(), sender.getName(), recipient.getName(), Category.debit, transferAmount);
 
         sender.getTransactionsList().addTransaction(credit);
         recipient.getTransactionsList().addTransaction(debit);
 
         sender.setBalance(sender.getBalance() + credit.getTransferAmount());
-        recipient.setBalance(sender.getBalance() + debit.getTransferAmount());
+        recipient.setBalance(recipient.getBalance() + debit.getTransferAmount());
 
     }
 
