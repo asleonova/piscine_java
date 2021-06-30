@@ -28,7 +28,7 @@ public class Program {
         }
     }
 
-    public static void inputSignatureBytes() {
+    public static boolean inputSignatureBytes() {
         Scanner input = new Scanner(System.in);
         String line = input.nextLine();
         try {
@@ -37,12 +37,15 @@ public class Program {
             sigfis.read(sigToVerify);
             sigfis.close();
             buffer = getHex(sigToVerify);
+            //System.out.println(buffer);
+            return true;
 
             //----------Delete this-----------//
 
-            System.out.println(buffer);
+
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -66,17 +69,34 @@ public class Program {
         return hex.toString();
     }
 
-    public static void main(String args[]) {
-        inputSignatureBytes();
-        try {
-            output = new FileOutputStream("result.txt");
-            input = new FileInputStream("/Users/dbliss/school21/piscine_java/D02/ex00/src/signatures.txt");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("PROCESSED");
-        readSignatures();
+    public static void result() {
         boolean res = findSignature();
-        System.out.println("res: " + res);
+        if (res == true) {
+
+            try {
+                output.write(buffer.getBytes());
+                output.write('\n');
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String args[]) {
+
+        boolean res = true;
+        while (res == true) {
+            res = inputSignatureBytes();
+            try {
+                output = new FileOutputStream("result.txt");
+                input = new FileInputStream("signatures.txt");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println("PROCESSED");
+            readSignatures();
+            result();
+        }
+
     }
 }
