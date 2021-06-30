@@ -52,7 +52,7 @@ public class TransactionsLinkedList implements TransactionsList {
     }
 
     @Override
-    public Transaction[] toArray(Transaction transaction) {
+    public Transaction[] toArray() {
         Transaction transactionArr[] = new Transaction[size];
         MyLinkedList<Transaction> tmp = head;
 

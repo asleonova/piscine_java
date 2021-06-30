@@ -13,28 +13,32 @@ public class Program {
 
         }
 
-        User userFirst = new User("First", 900);
-        System.out.println("User: " + userFirst.getName() + "\nwith the identifier: " + userFirst.getIdentifier()
-                + "\nwith the balance of: " + userFirst.getBalance());
-        User userSecond = new User( "Second", 0);
-        System.out.println("User: " + userSecond.getName() + "\nwith the identifier: " + userSecond.getIdentifier()
-                + "\nwith the balance of: " + userSecond.getBalance());
+        System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "CREATING 2 USERS, WITH THE BALANCES 900 AND 0: " + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
 
+        User userFirst = new User("First", 900);
+        System.out.println("User: " + userFirst.getName() + "--> with the identifier: " + userFirst.getIdentifier()
+                + "--> with the balance of: " + userFirst.getBalance());
+        User userSecond = new User( "Second", 0);
+        System.out.println("User: " + userSecond.getName() + "--> with the identifier: " + userSecond.getIdentifier()
+                + "--> with the balance of: " + userSecond.getBalance());
+
+
+
+        System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "ADDING TRANSACTIONS TO THE LIST: " + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
 
         Transaction creditTransaction = new Transaction(userSecond.getName(), userFirst.getName(), Category.credit, -50);
         userFirst.getTransactionsList().addTransaction(creditTransaction);
         userFirst.setBalance(userFirst.getBalance() + creditTransaction.getTransferAmount());
-        UUID trID1 = creditTransaction.getIdentifier();
-
-
-
-
 
 
         creditTransaction = new Transaction(userSecond.getName(), userFirst.getName(), Category.credit, -30);
         userFirst.getTransactionsList().addTransaction(creditTransaction);
         userFirst.setBalance(userFirst.getBalance() + creditTransaction.getTransferAmount());
-        UUID trID2 = creditTransaction.getIdentifier();
+        UUID trID = creditTransaction.getIdentifier();
 
         for (int i = -100; i > -400; i -= 100) {
             creditTransaction = new Transaction(userSecond.getName(), userFirst.getName(), Category.credit, i);
@@ -45,26 +49,27 @@ public class Program {
         creditTransaction = new Transaction(userSecond.getName(), userFirst.getName(), Category.credit, -10);
         userFirst.getTransactionsList().addTransaction(creditTransaction);
         userFirst.setBalance(userFirst.getBalance() + creditTransaction.getTransferAmount());
-        UUID trID3 = creditTransaction.getIdentifier();
-
-        userFirst.getTransactionsList().removeTransaction(trID2);
-
-
-
-
-
-//        Transaction debitTransaction = new Transaction(userSecond.getName(), userFirst.getName(), Category.debit, 500);
-//        userFirst.getTransactionsList().addTransaction(debitTransaction);
-//        userFirst.setBalance(userFirst.getBalance() + debitTransaction.getTransferAmount());
-//
-//        System.out.println("User: " + userFirst.getName() + "\nwith the identifier: " + userFirst.getIdentifier()
-//                + "\nwith the balance of: " + userFirst.getBalance());
+        UUID trID1 = creditTransaction.getIdentifier();
 
         userFirst.printTransactionList();
-        System.out.println('\n');
-        userFirst.printTransactionListFirstLast();
 
+        System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "TRANSFORMING TRANSACTIONS INTO ARRAY: " + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
+        Transaction transactionArrayUserFirst[] = userFirst.getTransactionsList().toArray();
+        System.out.println("\nFirst user transaction list after toArray:");
+        for(int i = 0; i < transactionArrayUserFirst.length; ++i) {
+            transactionArrayUserFirst[i].printTransaction();
+        }
 
+        System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "REMOVING 2ND AND LAST TRANSACTIONS: " + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "---------*************---------" + ANSI_RESET);
+
+        userFirst.getTransactionsList().removeTransaction(trID);
+        userFirst.getTransactionsList().removeTransaction(trID1);
+
+        userFirst.printTransactionList();
 
     }
 }
