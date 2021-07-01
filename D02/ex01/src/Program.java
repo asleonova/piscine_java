@@ -82,9 +82,9 @@ public class Program {
         File file1 = new File(args[0]);
         File file2 = new File(args[1]);
         if (file1.length() == 0 && file2.length() == 0)
-            System.out.println("Similarity = 0");
-        else if (file1.length() == 0 || file2.length() == 0)
             System.out.println("Similarity = 1");
+        else if (file1.length() == 0 || file2.length() == 0)
+            System.out.println("Similarity = 0");
         else {
             try {
                 FileReader readerFileOne = new FileReader(args[0]);
