@@ -6,13 +6,11 @@ import java.util.HashMap;
 
 public class Program {
 
-
     static String buffer;
     static HashMap<String, String> map = new HashMap<>();
     static OutputStream output;
     static FileInputStream input;
 
-    // записали в мапу значения из файла PNG - key, value - коды без пробелов
     public static void readSignatures() {
         try {
             Scanner scanned = new Scanner(input);
@@ -21,7 +19,7 @@ public class Program {
             while (scanned.hasNextLine()) {
                 line = scanned.nextLine();
                 value = line.substring(line.indexOf(',') + 1);
-                map.put(line.substring(0, line.indexOf(',')), value.replaceAll("\\s", "")); // \\s for whitespace character
+                map.put(line.substring(0, line.indexOf(',')), value.replaceAll("\\s", ""));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -33,15 +31,11 @@ public class Program {
         String line = input.nextLine();
         try {
             FileInputStream sigfis = new FileInputStream(line);
-            byte[] sigToVerify = new byte[7];
+            byte[] sigToVerify = new byte[8];
             sigfis.read(sigToVerify);
             sigfis.close();
             buffer = getHex(sigToVerify);
-            //System.out.println(buffer);
             return true;
-
-            //----------Delete this-----------//
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,14 +79,14 @@ public class Program {
     public static void main(String args[]) {
 
         boolean res = true;
+        try {
+            output = new FileOutputStream("result.txt");
+            input = new FileInputStream("signatures.txt");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         while (res == true) {
             res = inputSignatureBytes();
-            try {
-                output = new FileOutputStream("result.txt");
-                input = new FileInputStream("signatures.txt");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             System.out.println("PROCESSED");
             readSignatures();
             result();
