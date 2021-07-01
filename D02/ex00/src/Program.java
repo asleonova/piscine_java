@@ -10,6 +10,7 @@ public class Program {
     static HashMap<String, String> map = new HashMap<>();
     static OutputStream output;
     static FileInputStream input;
+    static boolean wrongFile = false;
 
     public static void readSignatures() {
         try {
@@ -26,20 +27,21 @@ public class Program {
         }
     }
 
-    public static boolean inputSignatureBytes() {
+    public static void inputSignatureBytes() {
         Scanner input = new Scanner(System.in);
         String line = input.nextLine();
+        if (line.equals("42"))
+            System.exit(0);
         try {
             FileInputStream sigfis = new FileInputStream(line);
             byte[] sigToVerify = new byte[8];
             sigfis.read(sigToVerify);
             sigfis.close();
             buffer = getHex(sigToVerify);
-            return true;
 
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            System.out.println("File not found, enter valid path: ");
+            wrongFile = true;
         }
     }
 
@@ -47,9 +49,11 @@ public class Program {
         for (Map.Entry<String, String> pair : map.entrySet()) {
             if (buffer.lastIndexOf(pair.getValue()) != -1) {
                 buffer = pair.getKey();
+                System.out.println("PROCESSED");
                 return true;
             }
         }
+        System.out.println("UNDEFINED");
         return false;
     }
 
@@ -71,25 +75,26 @@ public class Program {
                 output.write(buffer.getBytes());
                 output.write('\n');
             } catch (Exception e) {
-               e.printStackTrace();
+                e.printStackTrace();
             }
         }
     }
 
     public static void main(String args[]) {
 
-        boolean res = true;
         try {
             output = new FileOutputStream("result.txt");
             input = new FileInputStream("signatures.txt");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        while (res == true) {
-            res = inputSignatureBytes();
-            System.out.println("PROCESSED");
-            readSignatures();
-            result();
+        while (true) {
+            inputSignatureBytes();
+            if (wrongFile == false) {
+                readSignatures();
+                result();
+            }
+            wrongFile = false;
         }
 
     }
