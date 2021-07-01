@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.io.*;
 import java.util.TreeMap;
 import java.util.Map;
@@ -56,8 +55,7 @@ public class Program {
             if (mapFileTwo.get(entry.getKey()) != null) {
                 int count = mapFileTwo.get(entry.getKey());
                 vectorFileTwo[i] = count;
-            }
-            else {
+            } else {
                 vectorFileTwo[i] = 0;
             }
         }
@@ -67,48 +65,44 @@ public class Program {
         int numerator = 0, denominatorA = 0, demominatorB = 0;
         double similarity = 0;
 
-        for (int i = 0; i < dictionary.size(); ++i)
-        {
+        for (int i = 0; i < dictionary.size(); ++i) {
             numerator += vectorFileOne[i] * vectorFileTwo[i];
             denominatorA += vectorFileOne[i] * vectorFileOne[i];
             demominatorB += vectorFileTwo[i] * vectorFileTwo[i];
         }
         similarity = numerator / (Math.sqrt(denominatorA) * Math.sqrt(demominatorB));
+        if (Double.isNaN(similarity)) {
+            similarity = 0;
+        }
         return similarity;
     }
 
     public static void main(String args[]) {
-        try {
-            FileReader readerFileOne = new FileReader(args[0]);
-            BufferedReader inStreamOne = new BufferedReader(readerFileOne);
-            FileReader readerFileTwo = new FileReader(args[1]);
-            BufferedReader inStreamTwo = new BufferedReader(readerFileTwo);
-            readFromFile(inStreamOne, mapFileOne);
-            readFromFile(inStreamTwo, mapFileTwo);
 
-        } catch (FileNotFoundException fe) {
-            System.out.println("File not found");
+        File file1 = new File(args[0]);
+        File file2 = new File(args[1]);
+        if (file1.length() == 0 && file2.length() == 0)
+            System.out.println("Similarity = 0");
+        else if (file1.length() == 0 || file2.length() == 0)
+            System.out.println("Similarity = 1");
+        else {
+            try {
+                FileReader readerFileOne = new FileReader(args[0]);
+                BufferedReader inStreamOne = new BufferedReader(readerFileOne);
+                FileReader readerFileTwo = new FileReader(args[1]);
+                BufferedReader inStreamTwo = new BufferedReader(readerFileTwo);
+                readFromFile(inStreamOne, mapFileOne);
+                readFromFile(inStreamTwo, mapFileTwo);
+
+            } catch (FileNotFoundException fe) {
+                System.out.println("File not found");
+            }
+            createVectors();
+
+            double res = calculations();
+            BigDecimal bdDown = new BigDecimal(res).setScale(2, RoundingMode.DOWN);
+            System.out.println("Similarity = " + bdDown.doubleValue());
         }
 
-        for (Map.Entry<String, Integer> entry : mapFileOne.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + " , Value: " + entry.getValue());
-        }
-        System.out.println("------------//------------");
-        for (Map.Entry<String, Integer> entry1 : mapFileTwo.entrySet()) {
-            System.out.println("Key: " + entry1.getKey() + " , Value: " + entry1.getValue());
-        }
-        createVectors();
-        System.out.println("------------//------------");
-        for (int i = 0; i < vectorFileOne.length; ++i) {
-            System.out.println(vectorFileOne[i]);
-
-        }
-        System.out.println("------------//------------");
-        for (int i = 0; i < vectorFileTwo.length; ++i) {
-            System.out.println(vectorFileTwo[i]);
-        }
-        double res = calculations();
-        BigDecimal bdDown=new BigDecimal(res).setScale(2,RoundingMode.DOWN);
-        System.out.println("Similarity = " + bdDown.doubleValue());
     }
 }
