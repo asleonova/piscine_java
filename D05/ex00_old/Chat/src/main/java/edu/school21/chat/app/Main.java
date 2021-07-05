@@ -33,10 +33,9 @@ public class Main{
 
         try {
 
-            FileInputStream fileInput = new FileInputStream("./src/main/resources/schema.sql");
-            FileInputStream fileInputData = new FileInputStream("./src/main/resources/data.sql");
+            FileInputStream fileInput = new FileInputStream("/target/classes/schema.sql");
             Scanner sc = new Scanner(fileInput).useDelimiter(";");
-            Scanner scData = new Scanner(fileInputData).useDelimiter(";");
+
 
             Main app = new Main();
             connection = app.connect();
@@ -47,15 +46,18 @@ public class Main{
                 createSql += ";";
                 stmt.executeUpdate(createSql);
             }
-
-            while (scData.hasNext()) {
-                createSql = scData.next().trim();
-                createSql += ";";
-                stmt.executeUpdate(createSql);
-            }
+//            createSql = "CREATE SCHEMA IF NOT EXISTS chat;";
+//            stmt.executeUpdate(createSql);
+//            createSql = "CREATE TABLE IF NOT EXISTS chat.user(userID SERIAL PRIMARY KEY, login varchar(30) NOT NULL UNIQUE);";
+//
+//            createSql = "CREATE TABLE IF NOT EXISTS chat.chatroom (chatID SERIAL PRIMARY KEY, chatName varchar(30) NOT NULL UNIQUE, chatOwner int REFERENCES chat.user(userID) NOT NULL);";
+//            stmt.executeUpdate(createSql);
             stmt.close();
             connection.close();
+
+
         }
+
         catch (Exception e)
         {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
