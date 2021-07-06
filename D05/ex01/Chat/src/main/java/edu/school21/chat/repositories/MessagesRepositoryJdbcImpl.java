@@ -14,7 +14,6 @@ public class MessagesRepositoryJdbcImpl implements MessagesRepository {
     private DataSource dataSource;
 
     private void closeConnections(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException {
-        dataSource.close();
         rs.close();
         ps.close();
         conn.close();

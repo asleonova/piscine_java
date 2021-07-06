@@ -46,15 +46,22 @@ public class Program {
             connection.close();
 
             Scanner scanner = new Scanner(System.in);
-
-            System.out.print("Enter message id\n-> ");
-            Long id = scanner.nextLong();
-
-            Optional<Message> message = mess.findById(id);
-            try {
-                System.out.println(message.get().toString());
-            } catch (Exception e) {
-                System.err.println("null optional returned");
+            Optional<Message> message;
+            while (true) {
+                System.out.print("Enter a message ID\n -> ");
+                if (scanner.hasNextLong()) {
+                    message = mess.findById(scanner.nextLong());
+                    try {
+                        System.out.println(message.get().toString());
+                    } catch (Exception e) {
+                        System.err.println("null optional returned");
+                    }
+                }
+                else if (scanner.next().equals("exit")) {
+                    break;
+                } else {
+                    System.out.println("ID must be number");
+                }
             }
         }
         catch (Exception e) {
