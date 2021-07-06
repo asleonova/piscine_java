@@ -76,12 +76,12 @@ public class Message {
 
     @Override
     public String toString() {
-        return "Message{" +
+        return "Message: {\n" +
                 "messageId=" + messageId +
-                ", author=" + author +
-                ", chatroom=" + chatroom +
-                ", text='" + text + '\'' +
-                ", localDateTime=" + localDateTime +
+                "\nauthor=" + author +
+                "\nchatroom=" + chatroom +
+                "\ntext='" + text + '\'' +
+                "\nlocalDateTime=" + localDateTime +
                 '}';
     }
 }

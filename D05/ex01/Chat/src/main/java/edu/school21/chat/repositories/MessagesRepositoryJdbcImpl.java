@@ -41,7 +41,9 @@ public class MessagesRepositoryJdbcImpl implements MessagesRepository {
             // тут заполнили поля, которые пришли нам по селекту ID для сообщения
             Message message = new Message();
             message.setMessageId(rs.getLong(1));
+            message.setText(rs.getString(4));
             message.setLocalDateTime(rs.getTimestamp(5).toLocalDateTime());
+
 
             // теперь надо взять юзера, чтобы можно было заполнить поле "author".
             // до этого надо запомнить его id из таблицы message:
