@@ -114,10 +114,6 @@ public class MessagesRepositoryJdbcImpl implements MessagesRepository {
             else {
                 localDateTime = "null";
             }
-//            LocalDateTime localDateTime = message.getLocalDateTime();
-//            if (localDateTime == null) {
-//                java.time.LocalDateTime.now();
-//            }
             Long userId = rs.getLong(1);
 
             selectSQL = "SELECT * FROM chat.chatroom WHERE chatID = " + message.getChatroom().getChatId();

@@ -49,9 +49,9 @@ public class Program {
             stmt.close();
             connection.close();
 
-            User creator = new User(1L, "user", "user", new ArrayList(), new ArrayList());
+            User creator = new User(2L, "user", "user", new ArrayList(), new ArrayList());
             User author = creator;
-            Chatroom room = new Chatroom(1L, "room", creator, new ArrayList());
+            Chatroom room = new Chatroom(2L, "room", creator, new ArrayList());
             Message message = new Message(null, author, room, "Hello!", LocalDateTime.now());
             MessagesRepository messagesRepository = new MessagesRepositoryJdbcImpl(dataSource);
             messagesRepository.save(message);
