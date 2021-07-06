@@ -10,6 +10,9 @@ public class User {
     private List<Chatroom>  createdRooms;
     private List<Chatroom>  activeChatroom;
 
+    public User() {
+    }
+
     public User(Long userId, String login, String password, List<Chatroom> createdRooms, List<Chatroom> activeChatroom) {
         this.userId = userId;
         this.login = login;

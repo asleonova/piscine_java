@@ -9,6 +9,9 @@ public class Chatroom {
     private User            chatOwner;
     private List<Message>   messages;
 
+    public Chatroom() {
+    }
+
     public Chatroom(Long chatId, String chatName, User chatOwner, List<Message> messages) {
         this.chatId = chatId;
         this.chatName = chatName;

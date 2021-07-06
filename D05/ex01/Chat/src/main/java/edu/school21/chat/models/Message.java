@@ -18,6 +18,8 @@ public class Message {
         this.localDateTime = localDateTime;
     }
 
+    public Message() {}
+
     public Long getMessageId() {
         return messageId;
     }
@@ -52,6 +54,7 @@ public class Message {
 
     public LocalDateTime getLocalDateTime() {
         return localDateTime;
+
     }
 
     public void setLocalDateTime(LocalDateTime localDateTime) {
