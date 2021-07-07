@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.school21.repositories.EmbeddedDataSourceTest" time="0.409" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.school21.repositories.ProductsRepositoryJdbcImplTest" time="0.076" tests="0" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -62,9 +62,4 @@
     <property name="java.class.version" value="52.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="getConnectionTest" classname="edu.school21.repositories.EmbeddedDataSourceTest" time="0.407">
-    <system-err><![CDATA[Jul 07, 2021 7:49:58 PM org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory initDatabase
-INFO: Starting embedded database: url='jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-]]></system-err>
-  </testcase>
 </testsuite>

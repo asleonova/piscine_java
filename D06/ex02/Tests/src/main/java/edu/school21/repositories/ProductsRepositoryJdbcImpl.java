@@ -1,6 +1,7 @@
 package edu.school21.repositories;
 
 import edu.school21.models.Product;
+
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ProductsReposutoryJdbcImpl implements ProductsRepository {
+public class ProductsRepositoryJdbcImpl implements ProductsRepository {
 
     private DataSource dataSource;
+//    private EmbeddedDatabase dataSource;
 
     private void closeConnections(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException {
         rs.close();
@@ -19,13 +21,13 @@ public class ProductsReposutoryJdbcImpl implements ProductsRepository {
         conn.close();
     }
 
-    public ProductsReposutoryJdbcImpl(DataSource dataSource) {
+    public ProductsRepositoryJdbcImpl(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     private ResultSet selectAndResult(Connection connection, Long id, PreparedStatement prepStmt) throws SQLException {
 
-        String selectSQL = "SELECT * FROM product.productTable WHERE productID = " + id;
+        String selectSQL = ("SELECT * FROM product.productTable WHERE productID = " + id);
         prepStmt = connection.prepareStatement(selectSQL);
         ResultSet rs = prepStmt.executeQuery();
 
@@ -109,7 +111,7 @@ public class ProductsReposutoryJdbcImpl implements ProductsRepository {
 
         try {
             Connection connection = dataSource.getConnection();
-            PreparedStatement prepStmt = connection.prepareStatement("DELETE FROM product.productTable WHERE productID = " + id;
+            PreparedStatement prepStmt = connection.prepareStatement("DELETE FROM product.productTable WHERE productID = " + id);
             ResultSet res = prepStmt.executeQuery();
 
             if (res.next() == false) {
@@ -131,7 +133,7 @@ public class ProductsReposutoryJdbcImpl implements ProductsRepository {
         Long pPrice = product.getPrice();
         try {
             Connection connection = dataSource.getConnection();
-            PreparedStatement prepStmt = connection.prepareStatement("UPDATE product.productTable SET name = " + pName + ", price = " + pPrice + " WHERE productID = " + product.getProductID();
+            PreparedStatement prepStmt = connection.prepareStatement("UPDATE product.productTable SET name = " + pName + ", price = " + pPrice + " WHERE productID = " + product.getProductID());
             ResultSet res = prepStmt.executeQuery();
 
             if (res.next() == false) {

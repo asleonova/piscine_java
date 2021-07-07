@@ -1,2 +1,3 @@
-/Users/dbliss/school21/piscine_java/D06/ex01/Tests/src/test/java/edu/school21/numbers/NumberWorkerTest.java
-/Users/dbliss/school21/piscine_java/D06/ex01/Tests/src/test/java/edu/school21/repositories/EmbeddedDataSourceTest.java
+/Users/dbliss/school21/piscine_java/D06/ex02/Tests/src/test/java/edu/school21/numbers/NumberWorkerTest.java
+/Users/dbliss/school21/piscine_java/D06/ex02/Tests/src/test/java/edu/school21/repositories/EmbeddedDataSourceTest.java
+/Users/dbliss/school21/piscine_java/D06/ex02/Tests/src/test/java/edu/school21/repositories/ProductsRepositoryJdbcImplTest.java
