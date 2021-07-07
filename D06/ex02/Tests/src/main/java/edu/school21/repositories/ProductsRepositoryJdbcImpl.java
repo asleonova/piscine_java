@@ -13,32 +13,33 @@ import java.util.Optional;
 public class ProductsRepositoryJdbcImpl implements ProductsRepository {
 
     private DataSource dataSource;
-//    private EmbeddedDatabase dataSource;
+    private ResultSet resultSet;
+    private PreparedStatement prepStmt;
+    private Connection connection;
 
-    private void closeConnections(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException {
-        rs.close();
-        ps.close();
-        conn.close();
+    private void closeConnections() throws SQLException {
+        resultSet.close();
+        prepStmt.close();
+        connection.close();
     }
 
     public ProductsRepositoryJdbcImpl(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    private ResultSet selectAndResult(Connection connection, Long id, PreparedStatement prepStmt) throws SQLException {
+    private void selectAndResult(Long id) throws SQLException {
 
-        String selectSQL = ("SELECT * FROM product.productTable WHERE productID = " + id);
+        connection = dataSource.getConnection();
+        String selectSQL = ("SELECT * FROM product.productTable WHERE productID =" + id);
         prepStmt = connection.prepareStatement(selectSQL);
-        ResultSet rs = prepStmt.executeQuery();
+        resultSet = prepStmt.executeQuery();
 
-        if (rs.next() == false) {
-            closeConnections(rs, prepStmt, connection);
-            return null;
+        if (resultSet.next() == false) {
+            closeConnections();
         }
-        else
-            return rs;
     }
 
+    @Override
     public List<Product> findAll() {
 
         List<Product> products = new ArrayList<>();
@@ -53,23 +54,21 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
         return products;
     }
 
-
+    @Override
     public Optional<Product> findById(Long id) {
 
         try {
             PreparedStatement prepStmt = null;
             Connection connection = dataSource.getConnection();
-            ResultSet res = selectAndResult(connection, id, prepStmt);
+            selectAndResult(id);
 
-            if (res == null) {
-                return null;
-            }
+
             Product product = new Product();
-            product.setProductID(res.getLong(1));
-            product.setName(res.getString(2));
-            product.setPrice(res.getLong(3));
+            product.setProductID(resultSet.getLong(1));
+            product.setName(resultSet.getString(2));
+            product.setPrice(resultSet.getLong(3));
 
-            closeConnections(res, prepStmt, connection);
+            closeConnections();
             return Optional.of(product);
 
         }
@@ -79,7 +78,7 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
         return Optional.empty();
     }
 
-
+    @Override
     public void save(Product product) {
 
         Long id = product.getProductID();
@@ -92,38 +91,34 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
             return ;
         }
         try {
-            Connection connection = dataSource.getConnection();
-            PreparedStatement prepStmt = connection.prepareStatement("INSERT INTO product.productTable VALUES (" + "default" + ", " + name +
-                    ", " + price + ") RETURNING productID");
-            ResultSet res = prepStmt.executeQuery();
+            connection = dataSource.getConnection();
+            prepStmt = connection.prepareStatement(String.format("INSERT INTO product.productTable VALUES (default, '%s', %d);", product.getName(), product.getPrice()));
+            prepStmt.execute();
 
-            if (res.next() == false) {
-                closeConnections(res, prepStmt, connection);
-                return ;
-            }
+            connection.close();
+            prepStmt.close();
         }
         catch (SQLException e) {
             e.getMessage();
         }
     }
 
+    @Override
     public void delete (Long id) {
 
         try {
-            Connection connection = dataSource.getConnection();
-            PreparedStatement prepStmt = connection.prepareStatement("DELETE FROM product.productTable WHERE productID = " + id);
-            ResultSet res = prepStmt.executeQuery();
+            connection = dataSource.getConnection();
+            prepStmt = connection.prepareStatement("DELETE FROM product.productTable WHERE productID = " + id);
+            resultSet = prepStmt.executeQuery();
 
-            if (res.next() == false) {
-                closeConnections(res, prepStmt, connection);
-                return ;
-            }
+            closeConnections();
         }
         catch (SQLException e) {
             e.getMessage();
         }
     }
 
+    @Override
     public void update(Product product) {
 
         String pName = product.getName();
@@ -132,14 +127,11 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
         }
         Long pPrice = product.getPrice();
         try {
-            Connection connection = dataSource.getConnection();
-            PreparedStatement prepStmt = connection.prepareStatement("UPDATE product.productTable SET name = " + pName + ", price = " + pPrice + " WHERE productID = " + product.getProductID());
-            ResultSet res = prepStmt.executeQuery();
-
-            if (res.next() == false) {
-                closeConnections(res, prepStmt, connection);
-                return ;
-            }
+            connection = dataSource.getConnection();
+            prepStmt = connection.prepareStatement("UPDATE product.productTable SET name = " + pName + ", price = " + pPrice + " WHERE productID = " + product.getProductID());
+            prepStmt.execute();
+            connection.close();
+            prepStmt.close();
         }
         catch (SQLException e) {
             e.getMessage();
