@@ -1,8 +1,6 @@
 package edu.school21.repositories;
 
 import edu.school21.models.Product;
-import edu.school21.repositories.ProductsRepository;
-import edu.school21.repositories.ProductsRepositoryJdbcImpl;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -11,14 +9,12 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import javax.sql.DataSource;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
 public class ProductsRepositoryJdbcImplTest {
 
     DataSource dataSource;
-   // EmbeddedDatabase database;
     ProductsRepository repository;
 
     final List<Product> EXPECTED_FIND_ALL_PRODUCTS = new ArrayList() {{
