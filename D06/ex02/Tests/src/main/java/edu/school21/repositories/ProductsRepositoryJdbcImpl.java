@@ -109,9 +109,10 @@ public class ProductsRepositoryJdbcImpl implements ProductsRepository {
         try {
             connection = dataSource.getConnection();
             prepStmt = connection.prepareStatement("DELETE FROM product.productTable WHERE productID = " + id);
-            resultSet = prepStmt.executeQuery();
+            prepStmt.execute();
 
-            closeConnections();
+            connection.close();
+            prepStmt.close();
         }
         catch (SQLException e) {
             e.getMessage();

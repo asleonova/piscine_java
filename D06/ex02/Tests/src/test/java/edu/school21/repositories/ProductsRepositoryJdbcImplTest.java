@@ -70,13 +70,7 @@ public class ProductsRepositoryJdbcImplTest {
     @Test
     public void deleteTest() {
         repository.delete(EXPECTED_FIND_ALL_PRODUCTS.get(2).getProductID());
-        Assertions.assertNull(repository.findById(EXPECTED_FIND_ALL_PRODUCTS.get(2).getProductID()));
+        Assertions.assertFalse(repository.findById(EXPECTED_FIND_ALL_PRODUCTS.get(2).getProductID()).isPresent());
     }
-
-//    @AfterEach
-//    public void shutDown() {
-//        database.shutdown();
-//    }
-
 
 }
