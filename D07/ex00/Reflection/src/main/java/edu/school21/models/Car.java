@@ -1,6 +1,7 @@
 package edu.school21.models;
 
-public class Car {
+public class
+Car {
     private String  model;
     private Integer age;
     private Double  maxSpeed;

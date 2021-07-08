@@ -13,13 +13,14 @@ import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
 
+import java.lang.reflect.Field;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
 public class Program {
-    public static void main(String args[]) {
+    public static void main(String args[]) throws NoSuchFieldException, IllegalAccessException {
         ReflectionChecker checker = new ReflectionChecker();
 
         System.out.println("Classes:");
@@ -28,7 +29,7 @@ public class Program {
 
         Scanner sc = new Scanner(System.in);
         String className;
-        System.out.println("Enter class name:\n->");
+        System.out.print("Enter class name:\n->");
         className = sc.nextLine();
         System.out.println("------------------------");
         System.out.println("fields: ");
@@ -37,6 +38,8 @@ public class Program {
         checker.showClassMethods(className);
         System.out.println("------------------------");
         System.out.println("Let's create an object: ");
+        checker.createNewObject();
+        checker.setClassFields();
 
 
 
