@@ -64,7 +64,8 @@ public class ReflectionChecker {
     public void showClassMethods(String className) {
         for (Class<?> set : classes) {
             if (set.getName().substring(20, set.getName().length()).equals(className)) {
-                methods = getAllMethods(edu.school21.models.User.class);
+                Class cl = forName(set.getName());
+                methods = getAllMethods(cl);
                 for (Method method : methods) {
                     System.out.print(method.getReturnType().getSimpleName() + " ");
                     System.out.print(method.getName() + "(");
@@ -76,6 +77,11 @@ public class ReflectionChecker {
                 }
             }
         }
+    }
+
+    public Object createNewObject(Object object) throws InstantiationException, IllegalAccessException {
+        Class clazz = object.getClass();
+        return clazz.newInstance();
     }
 //    public void showFieldsAnnotations(Object object) {
 //        Class clazz = object.getClass();

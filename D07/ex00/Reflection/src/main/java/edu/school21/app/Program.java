@@ -35,6 +35,9 @@ public class Program {
         checker.showClassFields(className);
         System.out.println("methods: ");
         checker.showClassMethods(className);
+        System.out.println("------------------------");
+        System.out.println("Let's create an object: ");
+
 
 
         //  тут будет печать филдов
