@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="printerWithPrefix"
+    class="edu.school21.print.logic.printer.PrinterWithPrefixImpl">
+        <constructor-arg ref="renderStdToLower"/>
+    </bean>
+
+    <bean id="printerWithDateTime"
+          class="edu.school21.print.logic.printer.PrinterWithPrefixImpl">
+        <constructor-arg ref="renderStdToUpper"/>
+    </bean>
+
+    <bean id="renderStdToLower"
+          class="edu.school21.print.logic.renderer.RendererStandardImpl">
+        <constructor-arg ref="preProsLower"/>
+    </bean>
+
+    <bean id="renderStdToUpper"
+          class="edu.school21.print.logic.renderer.RendererStandardImpl">
+        <constructor-arg ref="preProsUpper"/>
+    </bean>
+
+    <bean id="renderErrToLower"
+          class="edu.school21.print.logic.renderer.RendererErrImpl">
+        <constructor-arg ref="preProsLower"/>
+    </bean>
+
+    <bean id="renderErrToUpper"
+          class="edu.school21.print.logic.renderer.RendererErrImpl">
+        <constructor-arg ref="preProsUpper"/>
+    </bean>
+
+    <bean id="preProsUpper"
+          class="edu.school21.print.logic.preprocessor.PreProcessorToUpperImpl">
+    </bean>
+
+    <bean id="preProsLower"
+          class="edu.school21.print.logic.preprocessor.PreProcessorToLowerImpl">
+    </bean>
+
+
+
+</beans>
