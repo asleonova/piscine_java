@@ -1,6 +1,7 @@
 package edu.school21.sockets.config;
 
 import com.zaxxer.hikari.HikariDataSource;
+import edu.school21.sockets.repositories.MessageRepository;
 import edu.school21.sockets.repositories.UsersRepository;
 import edu.school21.sockets.repositories.UsersRepositoryImpl;
 import edu.school21.sockets.services.UsersService;
@@ -51,7 +52,12 @@ public class SocketsApplicationConfig {
     }
 
     @Bean
-    UsersService usersService() {
-        return new UsersServiceImpl(usersRepository(), passwordEncoder());
+    public UsersService usersService() {
+        return new UsersServiceImpl(usersRepository(), passwordEncoder(), messageRepository());
     }
+
+    @Bean
+    public MessageRepository messageRepository() { return new MessageRepository(dataSource()); }
+
+
 }
