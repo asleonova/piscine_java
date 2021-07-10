@@ -17,11 +17,40 @@ public class Main {
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 inputClient = new BufferedReader(new InputStreamReader(System.in));
+                new ReadFromSocket().start();
+                new WriteInSocket().start();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
+        private class ReadFromSocket extends Thread {
+            @Override
+            public void run() {
+                String str;
+                try {
+                    while ((str = in.readLine()) != null ){
+                        System.out.println(str);
+                    }
+                } catch (IOException e) {
+                    stopConnection();
+                }
+            }
+        }
+
+        private class WriteInSocket extends Thread {
+            @Override
+            public void run() {
+                String str;
+                try {
+                    while ((str = inputClient.readLine()) != null ){
+                        out.println(str);
+                    }
+                } catch (IOException e) {
+                    stopConnection();
+                }
+            }
+        }
 
         public void work() {
             String messageFromServer, msgClient;
@@ -42,22 +71,8 @@ public class Main {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
             }
         }
-
-        private String sendMessage(String msg) {
-            out.println(msg);
-            String resp = null;
-            try {
-                resp = in.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return resp;
-        }
-
 
         public void stopConnection() {
             try {
@@ -69,7 +84,6 @@ public class Main {
             }
         }
     }
-
     public static void main(String[] args) {
         if (args.length != 1) {
             System.err.println("ERROR! Expected --server-port='port'");
@@ -89,8 +103,7 @@ public class Main {
 
         ClientServer clientServer = new ClientServer();
         clientServer.startConnection("localhost", port);
-        clientServer.work();
-        clientServer.stopConnection();
 
     }
 }
+

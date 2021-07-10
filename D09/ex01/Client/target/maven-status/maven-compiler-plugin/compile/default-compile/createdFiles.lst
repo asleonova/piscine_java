@@ -1,2 +1,5 @@
+edu/school21/client/app/Main$ClientServer$ReadFromSocket.class
+edu/school21/client/app/Main$1.class
 edu/school21/client/app/Main$ClientServer.class
+edu/school21/client/app/Main$ClientServer$WriteInSocket.class
 edu/school21/client/app/Main.class
