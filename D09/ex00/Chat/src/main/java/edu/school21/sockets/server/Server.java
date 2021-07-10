@@ -65,10 +65,10 @@ public class Server {
                         password = in.readLine();
                         usersService.signUp(login, password);
                         out.println("Successful!");
+                        stop();
                     }
                 } else {
-                    out.println("server test stop");
-                    stop();
+                    out.println("enter 'signUp'");
                 }
             }
         } catch (IOException | SQLException e) {
