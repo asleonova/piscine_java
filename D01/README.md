@@ -1,6 +1,15 @@
 # Day 01 – Piscine Java
 ### OOP/Collections
 
+To test how these mini-programs work, first compile project in its working directory (src)
+```
+javac Program.java
+```
+Then execute: 
+```
+java Program
+```
+
 *Takeaways: Today you will learn how to model the operation of various collections correctly, and create a full-scale money transfer application*
 
 # Contents
