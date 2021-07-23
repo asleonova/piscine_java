@@ -14,20 +14,20 @@ java Program
 
 # Contents
 
-3. [Chapter I](#chapter-iii) \
-	3.1. [Introduction to exercises](#introduction-to-exercises)
-4. [Chapter II](#chapter-iv) \
-	4.1. [Exercise 00 – Models](#exercise-00-models)
-5. [Chapter III](#chapter-v) \
-	5.1. [Exercise 01 – ID Generator](#exercise-01-id-generator)
-6. [Chapter IV](#chapter-vi) \
-	6.1. [Exercise 02 – List of Users](#exercise-02-list-of-users)
-7. [Chapter V](#chapter-vii) \
-	7.1. [Exercise 03 – List of Transactions](#exercise-03-list-of-transactions)
-8. [Chapter VI](#chapter-viii) \
-	8.1. [Exercise 04 – Business Logic](#exercise-04-business-logic)
-9. [Chapter VII](#chapter-ix) \
-	9.1. [Exercise 05 – Menu](#exercise-05-menu)
+1. [Chapter I](#chapter-iii) \
+	1.1. [Introduction to exercises](#introduction-to-exercises)
+2. [Chapter II](#chapter-iv) \
+	2.1. [Exercise 00 – Models](#exercise-00-models)
+3. [Chapter III](#chapter-v) \
+	3.1. [Exercise 01 – ID Generator](#exercise-01-id-generator)
+4. [Chapter IV](#chapter-vi) \
+	4.1. [Exercise 02 – List of Users](#exercise-02-list-of-users)
+5. [Chapter V](#chapter-vii) \
+	5.1. [Exercise 03 – List of Transactions](#exercise-03-list-of-transactions)
+6. [Chapter VI](#chapter-viii) \
+	6.1. [Exercise 04 – Business Logic](#exercise-04-business-logic)
+7. [Chapter VII](#chapter-ix) \
+	7.1. [Exercise 05 – Menu](#exercise-05-menu)
 
 
 # Chapter I
